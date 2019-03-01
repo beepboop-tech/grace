@@ -18,7 +18,7 @@ export default class DrinksPage extends Component {
   }
 
   _onDrinkClicked(drink) {
-    postJSON('/api/orders', {})
+    postJSON('/api/orders', { ref: drink.ref })
       .then(resp => resp.json())
       .then(json => console.log(json))
       .catch(err => console.log(err));
