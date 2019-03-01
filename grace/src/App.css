@@ -18,13 +18,21 @@
   object-fit: cover;
   width: 100%;
   height: 200px;
+  top: 0;
+  left: 0;
+}
+
+.DrinkTextContainer {
+  background-color: #0008;
+  position: absolute;
+  bottom: 3px;
+  right: 0;
+  width: 100%;
 }
 
 .DrinkItemText {
-  position: absolute;
   font-size: 30pt;
   font-weight: bold;
-  bottom: 10px;
-  right: 10px;
   color: white;
+  margin: 10px;
 }

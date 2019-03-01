@@ -26,9 +26,11 @@ function DrinkItem(props) {
         src='https://realhousemoms.com/wp-content/uploads/Manhattan-Drink-IG.jpg'
         className='DrinkImage'
       />
-      <p className='DrinkItemText'>
-        {props.name}
-      </p>
+      <div className='DrinkTextContainer'>
+        <p className='DrinkItemText'>
+          {props.name}
+        </p>
+      </div>
     </div>
   );
 }
