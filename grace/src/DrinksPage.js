@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { apiUrl } from './API.js'
+import { apiUrl, postJSON } from './API.js'
 import './App.css';
 
 export default class DrinksPage extends Component {
@@ -17,11 +17,22 @@ export default class DrinksPage extends Component {
       .catch(err => console.log(err));
   }
 
+  _onDrinkClicked(drink) {
+    postJSON('/api/orders', {})
+      .then(resp => resp.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
+  }
+
   render() {
-    console.log(this.state.drinks);
     return (
       <ul className='DrinkList'>
-        {this.state.drinks.map((item) => <DrinkItem name={item.name}/>)}
+        {this.state.drinks.map((item) =>
+            <DrinkItem
+              name={item.name}
+              onClick={this._onDrinkClicked.bind(this, item)}
+              key={item.ref}
+            />)}
       </ul>
     );
   }
@@ -29,9 +40,10 @@ export default class DrinksPage extends Component {
 
 function DrinkItem(props) {
   return (
-    <div className='DrinkItem'>
+    <div className='DrinkItem' onClick={props.onClick}>
       <img
         src='https://realhousemoms.com/wp-content/uploads/Manhattan-Drink-IG.jpg'
+        alt=''
         className='DrinkImage'
       />
       <div className='DrinkTextContainer'>
