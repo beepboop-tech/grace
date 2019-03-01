@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
-import Drink from './Drink.js';
+import { apiUrl } from './API.js'
 import './App.css';
 
 export default class DrinksPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [new Drink("Vodka"), new Drink("Coke")]
+      drinks: []
     }
   }
 
+  componentDidMount() {
+    fetch(apiUrl('/api/drinks'))
+      .then(resp => resp.json())
+      .then(json => this.setState({drinks: json.drinks}))
+      .catch(err => console.log(err));
+  }
+
   render() {
+    console.log(this.state.drinks);
     return (
       <ul className='DrinkList'>
-        {this.state.items.map((item) => <DrinkItem name={item.name}/>)}
+        {this.state.drinks.map((item) => <DrinkItem name={item.name}/>)}
       </ul>
     );
   }
