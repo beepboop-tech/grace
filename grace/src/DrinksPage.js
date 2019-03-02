@@ -42,7 +42,7 @@ class DrinkItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQFqPA_LxawS7w/profile-displayphoto-shrink_800_800/0?e=1556755200&v=beta&t=mmZjGheYXuFeUK6bQ1cOSmTv46G5Bf46B8lHwPJrT1A'
+      imageUrl: 'https://i2-prod.birminghammail.co.uk/incoming/article6106309.ece/ALTERNATES/s615/JS26160344.jpg'
     };
   }
 
