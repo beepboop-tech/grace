@@ -1,5 +1,5 @@
 export function apiUrl(s) {
-  return 'localhost:5000' + s;
+  return 'http://localhost:5000' + s;
 }
 
 export function postJSON(s, obj) {
