@@ -1,5 +1,6 @@
 export function apiUrl(s) {
   return window.location.origin + s;
+  // return 'http://localhost:5000' + s;
 }
 
 export function postJSON(s, obj) {
@@ -13,4 +14,10 @@ export function postJSON(s, obj) {
   };
 
   return fetch(apiUrl(s), opts);
+}
+
+export function getImageSearchJSON(searchTerm) {
+  const search = apiUrl(`/api/images/${searchTerm}`);
+  return fetch(search)
+    .then(resp => resp.json());
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { apiUrl, postJSON } from './API.js'
+import { apiUrl, postJSON, getImageSearchJSON } from './API.js'
 import './App.css';
 
 export default class DrinksPage extends Component {
@@ -38,19 +38,35 @@ export default class DrinksPage extends Component {
   }
 }
 
-function DrinkItem(props) {
-  return (
-    <div className='DrinkItem' onClick={props.onClick}>
-      <img
-        src='https://realhousemoms.com/wp-content/uploads/Manhattan-Drink-IG.jpg'
-        alt=''
-        className='DrinkImage'
-      />
-      <div className='DrinkTextContainer'>
-        <p className='DrinkItemText'>
-          {props.name}
-        </p>
+class DrinkItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imageUrl: 'https://media.licdn.com/dms/image/C4E03AQFqPA_LxawS7w/profile-displayphoto-shrink_800_800/0?e=1556755200&v=beta&t=mmZjGheYXuFeUK6bQ1cOSmTv46G5Bf46B8lHwPJrT1A'
+    };
+  }
+
+  componentDidMount() {
+    getImageSearchJSON(this.props.name)
+      .then(json => json.hits[0].webformatURL)
+      .then(url => { console.log(`GOT: ${url}`); this.setState({imageUrl:url}) })
+      .catch(console.log);
+  }
+
+  render() {
+    return (
+      <div className='DrinkItem' onClick={this.props.onClick}>
+        <img
+          src={this.state.imageUrl}
+          alt=''
+          className='DrinkImage'
+        />
+        <div className='DrinkTextContainer'>
+          <p className='DrinkItemText'>
+            {this.props.name}
+          </p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
