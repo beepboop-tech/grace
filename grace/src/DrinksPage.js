@@ -11,14 +11,14 @@ export default class DrinksPage extends Component {
   }
 
   componentDidMount() {
-    fetch(apiUrl('/api/drinks'))
+    fetch(apiUrl('/api/drinks/'))
       .then(resp => resp.json())
-      .then(json => this.setState({drinks: json.drinks}))
+      .then(json => this.setState({drinks: json.drinks || []}))
       .catch(err => console.log(err));
   }
 
   _onDrinkClicked(drink) {
-    postJSON('/api/orders', { ref: drink.ref })
+    postJSON('/api/orders/', { ref: drink.ref })
       .then(resp => resp.json())
       .then(json => console.log(json))
       .catch(err => console.log(err));
